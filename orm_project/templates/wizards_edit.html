@@ -1,0 +1,60 @@
+{% extends './base.html' %}
+{% block content %}
+<form method="POST" class="post-form" action="../wizard-update/{{target.id}}" id="wizard_edit" name="wizard_edit">{% csrf_token %}
+    <div class="container">
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label"></label>
+            <div class="col-sm-4">
+                <h3>Editar Wizard</h3>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Nombre</label>
+            <div class="col-sm-4">
+                <input type="text" id="nombre" name="nombre" value="{{target.name}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Casa</label>
+            <div class="col-sm-4">
+                <input type="text" id="casa" name="casa"  value="{{target.house}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Mascota</label>
+            <div class="col-sm-4">
+                <input type="text" id="mascota" name="mascota"  value="{{target.pet}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Año</label>
+            <div class="col-sm-4">
+                <input type="text" id="year" name="year"  value="{{target.year}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-4">
+                <button type="button" class="btn btn-primary" id="btn_enviar">Enviar</button>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="data" value="" name="data">
+</form>
+<div id="mensaje"></div>
+
+
+<script>
+$('#btn_enviar').click(function(){
+        let nombre= $('#nombre').val();
+        let casa= $('#casa').val();
+        let mascota= $('#mascota').val();
+        let year= $('#year').val();
+        data='{"nombre":"'+nombre+'", "casa":"'+casa+'","mascota":"'+mascota+'","year":"'+year+'"}';       
+        $('#data').val(data);           
+        //axios.post(url, data, headers)
+        $('#wizard_edit').submit();
+        
+    });
+</script>
+{% endblock %}

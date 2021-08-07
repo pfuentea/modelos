@@ -1,0 +1,32 @@
+ from users_app.models import Users
+ 
+ Consulta:Crear 3 usuarios nuevos.
+ 
+ Users.objects.create(first_name='Anakin', last_name  ='Skywalker',email_address  = 'askywalker@empire.com',age=45)
+ Users.objects.create(first_name='Luke', last_name  ='Skywalker',email_address  = 'lskywalker@rebel.com',age=25)
+ Users.objects.create(first_name='Leia', last_name  ='Organa',email_address  = 'lorgana@empire.com',age=25)
+
+Consulta: recuperar todos los usuarios.
+ Users.objects.all().values()
+ 
+Consulta: recuperar el último usuarios
+ ultimo=Users.objects.last()
+ 
+Consulta: recuperar el primer usuarios
+ primero=Users.objects.first()
+ 
+Consulta: Cambie el usuario con id = 3 para que su apellido sea Pancakes.
+tercero= Users.objects.get(id=3)
+tercero.last_name = 'Pancakes'
+tercero.save()
+
+Consulta: Eliminar el usuario con id = 2 de la base de datos
+segundo= Users.objects.get(id=2)
+segundo.delete()
+
+Consulta: Obtenga todos los usuarios, ordenados por su nombre
+Users.objects.all().order_by('first_name').values()
+
+BONUS Query: obtén todos los usuarios, ordenados por su nombre en orden descendente
+Users.objects.all().order_by('-first_name').values()
+
